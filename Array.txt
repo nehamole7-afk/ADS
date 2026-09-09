@@ -1,0 +1,24 @@
+  1 #include<stdio.h>
+  2
+  3     int sumarr(int arr[],int n)
+  4 {
+  5     int i, sum;
+  6     for(i=0;i<n;i++)
+  7     {
+  8         sum=sum+arr[i];
+  9     }
+ 10     return sum;
+ 11 }
+ 12 void main()
+ 13 {
+ 14     int n,i ,arr[40],result;
+ 15     printf("enter the elements in an array:");
+ 16     scanf("%d",&n);
+ 17     printf("enter the number of elements:");
+ 18    for(int i=0;i<n;i++)
+ 19    {
+ 20        scanf("%d",&arr[i]);
+ 21    }
+ 22    result=sumarr(arr,n);
+ 23    printf("result %d",result);
+ 24 }
