@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node*next;
+};
+
+struct Node*front=NULL;
+struct Node*rear=NULL;
+
+void enqueue(int value)
+{
+    struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL)
+    {
+        printf("queue overflow");
+        return;
+    }
+    newNode->data=value;
+    newNode->next=NULL;
+    if(rear==NULL)
+    {
+        front=rear=newNode;
+    }
+    else
+    {
+        rear->next=newNode;
+        rear=newNode;
+    }
+    printf("%d enqueued to queue \n",value);
+}
+
+void dequeue()
+{
+    if(front==NULL)
+    {
+        printf("queue umderflow");
+        return;
+    }
+    struct Node*temp=front;
+    printf("%d dequeued from queue \n",front->data);
+    front=front->next;
+    if(front==NULL)
+        rear=NULL;
+    free(temp);
+}
+
+void display()
+{
+    if(front==NULL)
+    {
+        printf("queue is empty");
+        return;
+    }
+    struct Node*temp=front;
+    printf("queue elements:");
+    while(temp!=NULL)
+    {
+        printf("%d->.",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL\n");
+}
+
+int main()
+{
+    int ch,value;
+    while(1)
+    {
+        printf("\nQUEUE USING LINKED LIST\n");
+        printf("1.enqueue \n2.dequeue \n3.display \n4.exit\n");
+        printf("enter your choice:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                printf("enter value:");
+                scanf("%d",&value);
+                enqueue(value);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("invalid choice");
+        }
+    }
+    return 0;
+}
